@@ -1,4 +1,4 @@
-﻿![Blip logo](https://ibb.co/eLU2s9) 
+﻿![Blip logo](https://firebasestorage.googleapis.com/v0/b/blip-live.appspot.com/o/Webp.net-resizeimage.png?alt=media&token=f306b57a-8c0c-43ad-b279-476d26fd1428) 
 # Make Same-day deliveries with Blip
 
 To get started integrating same-day deliveries into your application, use  `require('blip.delivery')('YOURSTOREID')` and replace `YOURSTOREID` with the storeID you recieved after signing up for an account.
@@ -29,25 +29,27 @@ To create a new delivery request, use `createNewDelivery(options)` where `option
     // All fields are required
     
     const delivery = await blip.createNewDelivery({
-	  "delivery": {
-		"instructions": "Deliver to the lobby", //Instructions to deliver
-		"contact": {
-			"name": "John Smith", // Name of the reciever
-			"number": "+16479839837" // Number of the reciever
-		},
-		"location": {
-			"address": "156 Enfield Place, Mississauga, ON" // Address of the dropoff point
+		"delivery": {
+			"instructions": "Deliver to the lobby", //Instructions to deliver
+			"contact": {
+				"name": "John Smith", // Name of the reciever
+				"number": "+16479839837" // Number of the reciever
+			},
+			"location": {
+				"address": "156 Enfield Place, Mississauga, ON" // Address of the dropoff point
+			}
 		}
-	  "pickup": {
-		"order_number": "ABC123", // Your own order number for identifying and tracking
-		"instructions": "Pickup from the main desk", // Instructions to pickup
-		"contact": {
-			"number": "+16478229867" // Pickup point helpline incase driver cannot find you
-		},
-		"location": {
-			"address": "100 City Centre Drive, Missisauga, ON" // Address of the pickup point
+	  	"pickup": {
+			"order_number": "ABC123", // Your own order number for identifying and tracking
+			"instructions": "Pickup from the main desk", // Instructions to pickup
+			"contact": {
+				"number": "+16478229867" // Pickup point helpline incase driver cannot find you
+			},
+			"location": {
+				"address": "100 City Centre Drive, Missisauga, ON" // Address of the pickup point
+			}
 		}
-	}
+	})
 
  
 
