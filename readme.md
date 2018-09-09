@@ -18,8 +18,6 @@ To get a new delivery quote, use `getQuote(options)` where `options` is an objec
 	    deliveryAddress: "3573 Mississauga Rd, Mississauga, ON"
 	})
 
- 
-
 ## Create a delivery request
 
 To create a new delivery request, use `createNewDelivery(options)` where `options` is an object containing required delivery details.
