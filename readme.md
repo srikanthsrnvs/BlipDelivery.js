@@ -29,25 +29,27 @@ To create a new delivery request, use `createNewDelivery(options)` where `option
     // All fields are required
     
     const delivery = await blip.createNewDelivery({
-	  "delivery": {
-		"instructions": "Deliver to the lobby", //Instructions to deliver
-		"contact": {
-			"name": "John Smith", // Name of the reciever
-			"number": "+16479839837" // Number of the reciever
-		},
-		"location": {
-			"address": "156 Enfield Place, Mississauga, ON" // Address of the dropoff point
-		}
-	  "pickup": {
-		"order_number": "ABC123", // Your own order number for identifying and tracking
-		"instructions": "Pickup from the main desk", // Instructions to pickup
-		"contact": {
-			"number": "+16478229867" // Pickup point helpline incase driver cannot find you
-		},
-		"location": {
-			"address": "100 City Centre Drive, Missisauga, ON" // Address of the pickup point
-		}
-	}
+    	"delivery": {
+    		"instructions": "Deliver to the lobby", //Instructions to deliver
+				"contact": {
+					"name": "John Smith", // Name of the reciever
+					"number": "+16479839837" // Number of the reciever
+				},
+				"location": {
+					"address": "156 Enfield Place, Mississauga, ON" // Address of the dropoff point
+				}
+			},
+			"pickup": {
+				"order_number": "ABC123", // Your own order number for identifying and tracking
+				"instructions": "Pickup from the main desk", // Instructions to pickup
+				"contact": {
+					"number": "+16478229867" // Pickup point helpline incase driver cannot find you
+				},
+				"location": {
+					"address": "100 City Centre Drive, Missisauga, ON" // Address of the pickup point
+				}
+			}
+		})
 
  
 
