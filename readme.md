@@ -1,4 +1,4 @@
-﻿![Blip logo](https://ibb.co/eLU2s9) 
+![](https://firebasestorage.googleapis.com/v0/b/blip-live.appspot.com/o/Webp.net-resizeimage.png?alt=media&token=f306b57a-8c0c-43ad-b279-476d26fd1428) 
 # Make Same-day deliveries with Blip
 
 To get started integrating same-day deliveries into your application, use  `require('blip.delivery')('YOURSTOREID')` and replace `YOURSTOREID` with the storeID you recieved after signing up for an account.
