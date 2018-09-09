@@ -1,0 +1,29 @@
+{
+  "name": "blip-deliveries",
+  "version": "0.1.1",
+  "description": "A wrapper for the Blip.delivery API to make same-day deliveries using code",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blipdelivery/BlipDelivery.js.git"
+  },
+  "keywords": [
+    "crowdsourced",
+    "delivery",
+    "blip",
+    "delivery-API"
+  ],
+  "author": "Srikanth Srinivas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/blipdelivery/BlipDelivery.js/issues"
+  },
+  "homepage": "https://github.com/blipdelivery/BlipDelivery.js#readme",
+  "dependencies": {
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
+  }
+}
