@@ -13,13 +13,13 @@ module.exports = function(storeID){
                   deliveryName = options.delivery.contact.name,
                   deliveryNumber = options.delivery.contact.number,
                   deliveryAddress = options.delivery.location.address;
-            var url;
-            if (!storeID){
-                url = 'https://us-central1-blip-testapp.cloudfunctions.net/makeDeliveryRequest'
-            }else{
-                url = 'https://api.blip.delivery/makeDeliveryRequest'
-            }
             return new Promise(function(resolve, reject){
+                var url;
+                if (storeID == "test"){
+                    url = 'https://us-central1-blip-testapp.cloudfunctions.net/makeDeliveryRequest'
+                }else{
+                    url = 'https://api.blip.delivery/makeDeliveryRequest'
+                }
                 if (!pickupInstructions){
                     var err = new Error("Missing pickup instructions")
                     reject(err)
@@ -52,7 +52,7 @@ module.exports = function(storeID){
                     var err = new Error("Missing delivery address")
                     reject(err)
                 }else{
-                    if (!storeID){
+                    if (storeID == "test"){
                         options.storeID = "-LJlJ-xuYqEtgs6C1qky";
                     }else{
                         options.storeID = storeID;
@@ -82,13 +82,13 @@ module.exports = function(storeID){
         getQuote: function(options){
             const pickupAddress = options.pickupAddress,
                   deliveryAddress = options.deliveryAddress;
-            var url;
-            if (!storeID){
-                url = 'https://us-central1-blip-testapp.cloudfunctions.net/getDeliveryPrice'
-            }else{
-                url = 'https://api.blip.delivery/getDeliveryPrice'
-            }
             return new Promise(function(resolve, reject){
+                var url;
+                if (storeID == "test"){
+                    url = 'https://us-central1-blip-testapp.cloudfunctions.net/getDeliveryPrice'
+                }else{
+                    url = 'https://api.blip.delivery/getDeliveryPrice'
+                }
                 if (!pickupAddress){
                     var err = new Error("Missing pickup address")
                     reject(err)
@@ -123,19 +123,19 @@ module.exports = function(storeID){
         },
         cancelDelivery: function(options){
             const deliveryID = options.deliveryID;
-            var url;
-            var store;
-            if (!storeID){
-                url = 'https://us-central1-blip-testapp.cloudfunctions.net/cancelDelivery'
-            }else{
-                url = 'https://api.blip.delivery/cancelDelivery'
-            }
             return new Promise( function(reolve, reject) {
+                var url;
+                var store;
+                if (storeID == "test"){
+                    url = 'https://us-central1-blip-testapp.cloudfunctions.net/cancelDelivery'
+                }else{
+                    url = 'https://api.blip.delivery/cancelDelivery'
+                }
                 if (!deliveryID){
                     var err = new Error("Missing deliveryID")
                     reject(err)
                 }else{
-                    if (!storeID){
+                    if (storeID == "test"){
                         store = "-LJlJ-xuYqEtgs6C1qky";
                     }else{
                         store = storeID
@@ -209,7 +209,7 @@ module.exports = function(storeID){
         //         }
         //     })
         // }
-    }
+    };
 }
 
 //Get delivery Status
