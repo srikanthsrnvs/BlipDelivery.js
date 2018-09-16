@@ -1,6 +1,6 @@
 {
   "name": "blip-deliveries",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "A wrapper for the Blip.delivery API to make same-day deliveries using code",
   "main": "index.js",
   "scripts": {
