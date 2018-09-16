@@ -13,8 +13,8 @@ module.exports = function(storeID){
                   deliveryInstructions = options.delivery.instructions,
                   deliveryName = options.delivery.contact.name,
                   deliveryNumber = options.delivery.contact.number,
-                  deliveryAddress = options.delivery.location.address,
-                  url;
+                  deliveryAddress = options.delivery.location.address;
+            var url;
             if (!storeID){
                 url = 'https://us-central1-blip-testapp.cloudfunctions.net/makeDeliveryRequest'
             }else{
@@ -82,8 +82,8 @@ module.exports = function(storeID){
         },
         getQuote: function(options){
             const pickupAddress = options.pickupAddress,
-                  deliveryAddress = options.deliveryAddress,
-                  url;
+                  deliveryAddress = options.deliveryAddress;
+            var url;
             if (!storeID){
                 url = 'https://us-central1-blip-testapp.cloudfunctions.net/getDeliveryPrice'
             }else{
@@ -123,9 +123,9 @@ module.exports = function(storeID){
             })
         },
         cancelDelivery: function(options){
-            const deliveryID = options.deliveryID,
-                url,
-                store;
+            const deliveryID = options.deliveryID;
+            var url;
+            var store;
             if (!storeID){
                 url = 'https://us-central1-blip-testapp.cloudfunctions.net/cancelDelivery'
             }else{
