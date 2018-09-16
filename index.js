@@ -3,7 +3,7 @@
 var request = require('request-promise');
 var store;
 
-module.exports = function(storeID, testMode){
+module.exports = function(storeID){
     return {
         createNewDelivery: function(options) {
             const pickupInstructions = options.pickup.instructions,
@@ -15,16 +15,12 @@ module.exports = function(storeID, testMode){
                   deliveryNumber = options.delivery.contact.number,
                   deliveryAddress = options.delivery.location.address,
                   url;
-            if (testMode == true){
+            if (!storeID){
                 url = 'https://us-central1-blip-testapp.cloudfunctions.net/makeDeliveryRequest'
             }else{
                 url = 'https://api.blip.delivery/makeDeliveryRequest'
             }
             return new Promise(function(resolve, reject){
-                if (!storeID){
-                    var err = new Error("Missing storeID. Please enter your storeID when requiring the blip-delivery module")
-                    reject(err)
-                }
                 if (!pickupInstructions){
                     var err = new Error("Missing pickup instructions")
                     reject(err)
@@ -57,7 +53,7 @@ module.exports = function(storeID, testMode){
                     var err = new Error("Missing delivery address")
                     reject(err)
                 }else{
-                    if (testMode == true){
+                    if (!storeID){
                         options.storeID = "-LJlJ-xuYqEtgs6C1qky";
                     }else{
                         options.storeID = storeID;
@@ -88,16 +84,12 @@ module.exports = function(storeID, testMode){
             const pickupAddress = options.pickupAddress,
                   deliveryAddress = options.deliveryAddress,
                   url;
-            if (testMode == true){
+            if (!storeID){
                 url = 'https://us-central1-blip-testapp.cloudfunctions.net/getDeliveryPrice'
             }else{
                 url = 'https://api.blip.delivery/getDeliveryPrice'
             }
             return new Promise(function(resolve, reject){
-                if (!storeID){
-                    var err = new Error("Missing storeID. Please enter your storeID when requiring the blip-delivery module")
-                    reject(err)
-                }
                 if (!pickupAddress){
                     var err = new Error("Missing pickup address")
                     reject(err)
@@ -134,7 +126,7 @@ module.exports = function(storeID, testMode){
             const deliveryID = options.deliveryID,
                 url,
                 store;
-            if (testMode == true){
+            if (!storeID){
                 url = 'https://us-central1-blip-testapp.cloudfunctions.net/cancelDelivery'
             }else{
                 url = 'https://api.blip.delivery/cancelDelivery'
@@ -144,7 +136,7 @@ module.exports = function(storeID, testMode){
                     var err = new Error("Missing deliveryID")
                     reject(err)
                 }else{
-                    if (testMode == true){
+                    if (!storeID){
                         store = "-LJlJ-xuYqEtgs6C1qky";
                     }else{
                         store = storeID
