@@ -1,7 +1,6 @@
 "use strict";
 
 var request = require('request-promise');
-var store;
 
 module.exports = function(storeID){
     return {
@@ -145,8 +144,8 @@ module.exports = function(storeID){
                         method: 'POST',
                         uri: url,
                         body: {
-                            deliveryID = deliveryID,
-                            storeID = store
+                            deliveryID: deliveryID,
+                            storeID: store
                         },
                         json: true,
                         resolveWithFullResponse: true
