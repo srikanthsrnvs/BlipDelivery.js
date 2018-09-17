@@ -123,7 +123,7 @@ module.exports = function(storeID){
         },
         cancelDelivery: function(options){
             const deliveryID = options.deliveryID;
-            return new Promise( function(reolve, reject) {
+            return new Promise( function(resolve, reject) {
                 var url;
                 var store;
                 if (storeID == "test"){
@@ -164,55 +164,52 @@ module.exports = function(storeID){
                     })
                 }
             })
+        },
+        getDeliveryStatus: function(options){
+            const deliveryID = options.deliveryID,
+                url,
+                store;
+            if (testMode == true){
+                url = 'https://us-central1-blip-testapp.cloudfunctions.net/getDeliveryStatus'
+            }else{
+                url = 'https://api.blip.delivery/getDeliveryStatus'
+            }
+            return new Promise( function(reolve, reject) {
+                if (!deliveryID){
+                    var err = new Error("Missing deliveryID")
+                    reject(err)
+                }else{
+                    if (testMode == true){
+                        store = "-LJlJ-xuYqEtgs6C1qky";
+                    }else{
+                        store = storeID
+                    }
+                    var data = {
+                        method: 'POST',
+                        uri: url,
+                        body: {
+                            deliveryID = deliveryID,
+                            storeID = store
+                        },
+                        json: true,
+                        resolveWithFullResponse: true
+                    }
+                    request(data)
+                    .then(function(response){
+                        if (response.statusCode == 400){
+                            var respErr = new Error(response.body.error)
+                            reject(respErr)
+                        }else{
+                            resolve(response.body)
+                        }
+                    })
+                    .catch(function(err){
+                        reject(err)
+                    })
+                }
+            })
         }
-        // getDeliveryStatus: function(options){
-        //     const deliveryID = options.deliveryID,
-        //         url,
-        //         store;
-        //     if (testMode == true){
-        //         url = 'https://us-central1-blip-testapp.cloudfunctions.net/getDeliveryStatus'
-        //     }else{
-        //         url = 'https://api.blip.delivery/getDeliveryStatus'
-        //     }
-        //     return new Promise( function(reolve, reject) {
-        //         if (!deliveryID){
-        //             var err = new Error("Missing deliveryID")
-        //             reject(err)
-        //         }else{
-        //             if (testMode == true){
-        //                 store = "-LJlJ-xuYqEtgs6C1qky";
-        //             }else{
-        //                 store = storeID
-        //             }
-        //             var data = {
-        //                 method: 'POST',
-        //                 uri: url,
-        //                 body: {
-        //                     deliveryID = deliveryID,
-        //                     storeID = store
-        //                 },
-        //                 json: true,
-        //                 resolveWithFullResponse: true
-        //             }
-        //             request(data)
-        //             .then(function(response){
-        //                 if (response.statusCode == 400){
-        //                     var respErr = new Error(response.body.error)
-        //                     reject(respErr)
-        //                 }else{
-        //                     resolve(response.body)
-        //                 }
-        //             })
-        //             .catch(function(err){
-        //                 reject(err)
-        //             })
-        //         }
-        //     })
-        // }
     };
 }
 
-//Get delivery Status
 //Get driver Status
-//Cancel delivery
-//Get delivery ETA
