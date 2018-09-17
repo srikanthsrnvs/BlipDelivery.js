@@ -166,8 +166,8 @@ module.exports = function(storeID){
             })
         },
         getDeliveryStatus: function(options){
-            const deliveryID = options.deliveryID,
-                url,
+            const deliveryID = options.deliveryID;
+            var url,
                 store;
             if (testMode == true){
                 url = 'https://us-central1-blip-testapp.cloudfunctions.net/getDeliveryStatus'
@@ -188,8 +188,8 @@ module.exports = function(storeID){
                         method: 'POST',
                         uri: url,
                         body: {
-                            deliveryID = deliveryID,
-                            storeID = store
+                            deliveryID: deliveryID,
+                            storeID: store
                         },
                         json: true,
                         resolveWithFullResponse: true
