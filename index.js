@@ -16,9 +16,11 @@ module.exports = function(storeID){
             return new Promise(function(resolve, reject){
                 var url;
                 if (storeID == "test"){
-                    url = 'https://us-central1-blip-testapp.cloudfunctions.net/makeDeliveryRequest'
+                    url = 'https://us-central1-blip-testapp.cloudfunctions.net/makeDeliveryRequest';
+                    options.storeID = "-LJlJ-xuYqEtgs6C1qky";
                 }else{
-                    url = 'https://api.blip.delivery/makeDeliveryRequest'
+                    url = 'https://api.blip.delivery/makeDeliveryRequest';
+                    options.storeID = storeID;
                 }
                 if (!pickupInstructions){
                     var err = new Error("Missing pickup instructions")
@@ -52,11 +54,6 @@ module.exports = function(storeID){
                     var err = new Error("Missing delivery address")
                     reject(err)
                 }else{
-                    if (storeID == "test"){
-                        options.storeID = "-LJlJ-xuYqEtgs6C1qky";
-                    }else{
-                        options.storeID = storeID;
-                    }
                     var data = {
                         method: 'POST',
                         uri: url,
@@ -127,19 +124,16 @@ module.exports = function(storeID){
                 var url;
                 var store;
                 if (storeID == "test"){
-                    url = 'https://us-central1-blip-testapp.cloudfunctions.net/cancelDelivery'
+                    url = 'https://us-central1-blip-testapp.cloudfunctions.net/cancelDelivery';
+                    store = "-LJlJ-xuYqEtgs6C1qky";
                 }else{
-                    url = 'https://api.blip.delivery/cancelDelivery'
+                    url = 'https://api.blip.delivery/cancelDelivery';
+                    store = storeID;
                 }
                 if (!deliveryID){
                     var err = new Error("Missing deliveryID")
                     reject(err)
                 }else{
-                    if (storeID == "test"){
-                        store = "-LJlJ-xuYqEtgs6C1qky";
-                    }else{
-                        store = storeID
-                    }
                     var data = {
                         method: 'POST',
                         uri: url,
@@ -169,10 +163,12 @@ module.exports = function(storeID){
             const deliveryID = options.deliveryID;
             var url,
                 store;
-            if (testMode == true){
-                url = 'https://us-central1-blip-testapp.cloudfunctions.net/getDeliveryStatus'
+            if (storeID == "test"){
+                store = "-LJlJ-xuYqEtgs6C1qky";
+                url = 'https://us-central1-blip-testapp.cloudfunctions.net/getDeliveryStatus';
             }else{
-                url = 'https://api.blip.delivery/getDeliveryStatus'
+                store = storeID;
+                url = 'https://api.blip.delivery/getDeliveryStatus';
             }
             return new Promise( function(reolve, reject) {
                 if (!deliveryID){
