@@ -75,10 +75,15 @@ To cancel a delivery, use `cancelDelivery(options)` where `options` is an object
 A delivery object has a status property after being created. It contains the following;
 
 `timeTaken` The Unix epoch time in seconds when the delivery was accepted by a courier. This is the time at which the courier starts to drive towards the pickup location
+
 `pickupETA` The Unix epoch time in seconds of an approximate ETA to the pickup point.
+
 `timePickedUp` The Unix epoch time in seconds when the courier picked up the order from the pickup location
+
 `dropoffETA` The Unix epoch time in seconds of an approximate ETA to the dropoff point
+
 `timeDelivered` The Unix epoch time in seconds when the courier delivered the order to the dropoff location
+
 `courier` The information of the driver currently on your delivery job
 
 To get the current status for a delivery, use `getDeliveryStatus(options)` where `options` is an object containing the deliveryID of the delivery
