@@ -170,7 +170,7 @@ module.exports = function(storeID){
                 store = storeID;
                 url = 'https://api.blip.delivery/getDeliveryStatus';
             }
-            return new Promise( function(reolve, reject) {
+            return new Promise( function(resolve, reject) {
                 if (!deliveryID){
                     var err = new Error("Missing deliveryID")
                     reject(err)
@@ -211,7 +211,7 @@ module.exports = function(storeID){
                 store = storeID;
                 url = 'https://api.blip.delivery/getDriverLocation';
             }
-            return new Promise( function(reolve, reject) {
+            return new Promise( function(resolve, reject) {
                 if (!deliveryID){
                     var err = new Error("Missing deliveryID")
                     reject(err)
