@@ -97,6 +97,20 @@ To get the current status for a delivery, use `getDeliveryStatus(options)` where
         "deliveryID": "ASF781" // Replace with your deliveryID
     })
 
+## Get driver location
+
+After a delivery has been accepted, it contains a `courier` property. The courier is a driver that has been dispatched, who's location updates every 500-700 meters. This function should not be called more than once every 3 minutes, as doing so may result in excess charges to your account. Furthermore, a status code of `400` will be returned if the deliveryID references a delivery that has not been picked up. To ensure a status code of `200`, make sure to call `getDeliveryStatus` first, and check if it contains a `courier` property.
+
+To get the currentLocation of your driver, use `getDriverLocation(options)` where `options` is an object containing the deliveryID of the delivery to track
+
+    var blip = require('blip-deliveries')('test'); //Replace 'test' with your storeID to switch to livemode
+
+    // A deliveryID is required
+
+    const status = await blip.getDriverLocation({
+        "deliveryID": "ASF781" // Replace with your deliveryID
+    })
+
 # Notes
 
 If you'd like to contribute, send an email to **srikanth@blip.delivery**

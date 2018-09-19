@@ -175,11 +175,47 @@ module.exports = function(storeID){
                     var err = new Error("Missing deliveryID")
                     reject(err)
                 }else{
-                    if (testMode == true){
-                        store = "-LJlJ-xuYqEtgs6C1qky";
-                    }else{
-                        store = storeID
+                    var data = {
+                        method: 'POST',
+                        uri: url,
+                        body: {
+                            deliveryID: deliveryID,
+                            storeID: store
+                        },
+                        json: true,
+                        resolveWithFullResponse: true
                     }
+                    request(data)
+                    .then(function(response){
+                        if (response.statusCode == 400){
+                            var respErr = new Error(response.body.error)
+                            reject(respErr)
+                        }else{
+                            resolve(response.body)
+                        }
+                    })
+                    .catch(function(err){
+                        reject(err)
+                    })
+                }
+            })
+        },
+        getDriverLocation: function(options){
+            const deliveryID = options.deliveryID;
+            var url,
+                store;
+            if (storeID == "test"){
+                store = "-LJlJ-xuYqEtgs6C1qky";
+                url = 'https://us-central1-blip-testapp.cloudfunctions.net/getDriverLocation';
+            }else{
+                store = storeID;
+                url = 'https://api.blip.delivery/getDriverLocation';
+            }
+            return new Promise( function(reolve, reject) {
+                if (!deliveryID){
+                    var err = new Error("Missing deliveryID")
+                    reject(err)
+                }else{
                     var data = {
                         method: 'POST',
                         uri: url,
