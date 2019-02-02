@@ -16,15 +16,11 @@ module.exports = function(storeID){
             return new Promise(function(resolve, reject){
                 var url;
                 if (storeID == "test"){
-                    url = 'https://us-central1-blip-testapp.cloudfunctions.net/makeDeliveryRequest';
+                    url = 'https://test.blip.delivery/makeDeliveryRequest';
                     options.storeID = "-LJlJ-xuYqEtgs6C1qky";
                 }else{
                     url = 'https://api.blip.delivery/makeDeliveryRequest';
                     options.storeID = storeID;
-                }
-                if (!pickupInstructions){
-                    var err = new Error("Missing pickup instructions")
-                    reject(err)
                 }
                 if (!pickupNumber){
                     var err = new Error("Missing pickup number")
@@ -36,10 +32,6 @@ module.exports = function(storeID){
                 }
                 if (!orderNumber){
                     var err = new Error("Missing order number")
-                    reject(err)
-                }
-                if (!deliveryInstructions){
-                    var err = new Error("Missing delivery instructions")
                     reject(err)
                 }
                 if (!deliveryName){
@@ -82,9 +74,11 @@ module.exports = function(storeID){
             return new Promise(function(resolve, reject){
                 var url;
                 if (storeID == "test"){
-                    url = 'https://us-central1-blip-testapp.cloudfunctions.net/getDeliveryPrice'
+                    url = 'https://test.blip.delivery/getDeliveryPrice'
+                    options.storeID = "-LJlJ-xuYqEtgs6C1qky";
                 }else{
                     url = 'https://api.blip.delivery/getDeliveryPrice'
+                    options.storeID = storeID;
                 }
                 if (!pickupAddress){
                     var err = new Error("Missing pickup address")
@@ -99,7 +93,8 @@ module.exports = function(storeID){
                     uri: url,
                     body: {
                         pickupAddress: pickupAddress,
-                        deliveryAddress: deliveryAddress
+                        deliveryAddress: deliveryAddress,
+                        storeID: options.storeID
                     },
                     json: true,
                     resolveWithFullResponse: true
@@ -124,7 +119,7 @@ module.exports = function(storeID){
                 var url;
                 var store;
                 if (storeID == "test"){
-                    url = 'https://us-central1-blip-testapp.cloudfunctions.net/cancelDelivery';
+                    url = 'https://test.blip.delivery/cancelDelivery';
                     store = "-LJlJ-xuYqEtgs6C1qky";
                 }else{
                     url = 'https://api.blip.delivery/cancelDelivery';
@@ -165,7 +160,7 @@ module.exports = function(storeID){
                 store;
             if (storeID == "test"){
                 store = "-LJlJ-xuYqEtgs6C1qky";
-                url = 'https://us-central1-blip-testapp.cloudfunctions.net/getDeliveryStatus';
+                url = 'https://test.blip.delivery/getDeliveryStatus';
             }else{
                 store = storeID;
                 url = 'https://api.blip.delivery/getDeliveryStatus';
@@ -206,7 +201,7 @@ module.exports = function(storeID){
                 store;
             if (storeID == "test"){
                 store = "-LJlJ-xuYqEtgs6C1qky";
-                url = 'https://us-central1-blip-testapp.cloudfunctions.net/getDriverLocation';
+                url = 'https://test.blip.delivery/getDriverLocation';
             }else{
                 store = storeID;
                 url = 'https://api.blip.delivery/getDriverLocation';
