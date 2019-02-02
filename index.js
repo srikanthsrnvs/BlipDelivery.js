@@ -8,7 +8,7 @@ module.exports = function(storeID){
             const pickupInstructions = options.pickup.instructions,
                   pickupNumber = options.pickup.contact.number,
                   pickupAddress = options.pickup.location.address,
-                  orderNumber = options.pickup.order_number,
+                  metadata = options.metadata,
                   deliveryInstructions = options.delivery.instructions,
                   deliveryName = options.delivery.contact.name,
                   deliveryNumber = options.delivery.contact.number,
@@ -21,6 +21,10 @@ module.exports = function(storeID){
                 }else{
                     url = 'https://api.blip.delivery/makeDeliveryRequest';
                     options.storeID = storeID;
+                }
+                if (!metadata){
+                    var err = new Error("Missing metadata(orderNumber & optional appID)")
+                    reject(err)
                 }
                 if (!pickupNumber){
                     var err = new Error("Missing pickup number")
