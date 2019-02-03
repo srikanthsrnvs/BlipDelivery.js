@@ -34,8 +34,8 @@ module.exports = function(storeID){
                     var err = new Error("Missing pickup address")
                     reject(err)
                 }
-                if (!orderNumber){
-                    var err = new Error("Missing order number")
+                if (!metadata){
+                    var err = new Error("Missing metadata")
                     reject(err)
                 }
                 if (!deliveryName){
